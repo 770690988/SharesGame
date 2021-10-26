@@ -373,6 +373,17 @@
             var dayNum = parseInt(dayStr) + 1;
             if (dayNum == 200) {
                 window.location.href = "gameOver.html";
+            } else if (dayNum % 10 == 0) {
+                var str = "判断题：市盈率是衡量证券投资价值和风险的指标";
+                if (confirm(str) == true) {
+                    alert("恭喜您回答正确，银行账户将增加5000元");
+                    var money = parseFloat(document.getElementById('moneySum').innerText);
+                    document.getElementById('moneySum').innerText = money + 5000;
+                    zichanreload(shareNum);
+                } else {
+                    alert("对不起，您回答错误，无法获得奖励");
+                }
+
             }
             document.getElementById('dayNum').innerText = dayNum;
             for (i = 0; i <= m; i++) {
