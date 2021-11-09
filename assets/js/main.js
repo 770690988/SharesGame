@@ -113,7 +113,7 @@ function showSharesData(k) {
     /*$('#myChart').remove;
     $('#chartDIv').append('<canvas> </canvas>');*/
     $('#myChart').remove();
-    $('#chartDIv').append('<canvas id="myChart" style="background-color: aliceblue;max-height: 90%;"></canvas>');
+    $('#chartDIv').append('<canvas id="myChart" style="background-color: aliceblue;max-height: 80%;"></canvas>');
     let ctx = document.getElementById("myChart").getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'line',
