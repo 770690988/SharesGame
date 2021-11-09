@@ -1,0 +1,65 @@
+#sharesShow {
+    margin-top: 0%;
+    margin-bottom: 160px;
+    font-size: small;
+}
+
+#moneySum {
+    width: 16%;
+}
+
+#dayNum {
+    height: 25px;
+    height: auto;
+}
+
+#youHave,
+#shareTitle,
+#nowPrice {
+    color: azure;
+}
+
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12 {
+    display: inline-table;
+    text-align: center;
+    margin: 0%;
+}
+
+.col-sm-1 {
+    width: 8%;
+}
+
+.col-sm-2 {
+    width: 16%;
+}
+
+.col-sm-3 {
+    width: 25%;
+}
+
+.col-sm-4 {
+    width: 30%;
+}
+
+.col-sm-5 {
+    width: 41.66%;
+}
+
+.col-sm-6 {
+    width: 50%;
+}
+
+.col-sm-7 {
+    width: 58.33%;
+}

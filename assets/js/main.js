@@ -1,7 +1,22 @@
+var shareNum = 9;
+var allData = [
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50]
+];
+var dayCount = [1];
 //进入下一天的数据处理
-function nextDay(m) {
+function nextDay(m) { //m表示股票的个数
     var dayStr = document.getElementById('dayNum').innerText;
     var dayNum = parseInt(dayStr) + 1;
+    dayCount[dayNum - 1] = dayNum;
     if (dayNum == 200) {
         window.location.href = "gameOver.html";
     } else if (dayNum % 10 == 0) {
@@ -25,8 +40,10 @@ function nextDay(m) {
             nextDayPrice = nowPrice + Math.random() * nowPrice;
         }
         document.getElementsByClassName('nowPrice')[i].innerText = nextDayPrice.toFixed(2);
+        dataChange(i, nextDayPrice.toFixed(2), parseInt(dayNum));
     }
     zichanreload(shareNum);
+    $('#myChart').remove();
 }
 
 //购买股票的数据处理
@@ -86,4 +103,52 @@ function zichanreload(m) {
     allSum = zichan + realSum;
     document.getElementById('zichanSum').innerText = allSum.toFixed(2);
 
+}
+
+function dataChange(m, Sprice, DayNum) {
+    allData[m][DayNum - 1] = Sprice;
+}
+
+function showSharesData(k) {
+    /*$('#myChart').remove;
+    $('#chartDIv').append('<canvas> </canvas>');*/
+    $('#myChart').remove();
+    $('#chartDIv').append('<canvas id="myChart" style="background-color: aliceblue;max-height: 90%;"></canvas>');
+    let ctx = document.getElementById("myChart").getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dayCount,
+            datasets: [{
+                label: '股票' + (k + 1),
+                data: allData[k],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 }
