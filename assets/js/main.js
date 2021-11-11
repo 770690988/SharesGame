@@ -18,7 +18,7 @@ function nextDay(m) { //m表示股票的个数
     var dayNum = parseInt(dayStr) + 1;
     dayCount[dayNum - 1] = dayNum;
     if (dayNum == 200) {
-        window.location.href = "gameOver.html";
+        jump(zichanreload(shareNum));
     } else if (dayNum % 10 == 0) {
         var str = "判断题：市盈率是衡量证券投资价值和风险的指标";
         if (confirm(str) == true) {
@@ -102,7 +102,7 @@ function zichanreload(m) {
     }
     allSum = zichan + realSum;
     document.getElementById('zichanSum').innerText = allSum.toFixed(2);
-
+    return allSum.toFixed(2);
 }
 
 function dataChange(m, Sprice, DayNum) {
@@ -151,4 +151,12 @@ function showSharesData(k) {
             }
         }
     });
+}
+
+function jump(label) {
+    var storage = window.sessionStorage;
+    //storage.clear();
+    storage.setItem('MoneySum', label);
+    window.location.href = "gameOver.html";
+
 }
