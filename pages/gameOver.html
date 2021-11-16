@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/gameOver.css">
+    <title>游戏结束</title>
 </head>
 
 <body>
@@ -15,14 +16,24 @@
 
     <!--资产框框-->
     <div class="ziChanSum">
-        <div>您的资产终止为：</div>
+        <div>最终您的资产总值为：</div>
         <div class="ziChanNum"></div>
     </div>
 
     <!--分析框框-->
-    <div>
+    <div class="dataAnalyse"></div>
 
+    <!--建议区-->
+    <div class="dataSuggestion"></div>
+    <div class="submitDiv">
+        <input id="yourName" placeholder="请输入您的大名~">
+        <button id="submitData">提交</button>
     </div>
+    <div class="tiaoZhuan">
+        <button class="tiaoZhuanButton" id="paihangBang">排行榜</button>
+        <button class="tiaoZhuanButton" id="index" onclick="ToIndex()">首页</button>
+    </div>
+
     <!--js一些包包-->
     <script src="../assets/js/jquery.min.js "></script>
     <script src="../assets/js/gameOver.js"></script>
