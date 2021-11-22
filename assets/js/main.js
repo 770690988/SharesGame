@@ -160,3 +160,7 @@ function jump(label) {
     window.location.href = "gameOver.html";
 
 }
+
+function gotoKnowledge() {
+    location.href = "knowledge.html";
+}

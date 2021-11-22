@@ -130,3 +130,14 @@
     font-weight: bold;
     font-size: 50px;
 }
+
+.lanMu {
+    background-color: aqua;
+    height: 40px;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+.lanMu li:hover {
+    background-color: rgb(14, 17, 16, 0.2);
+}
