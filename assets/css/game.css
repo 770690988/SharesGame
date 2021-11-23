@@ -74,10 +74,11 @@
     color: rgb(199, 13, 59);
 }
 
-#historyPrice {
+.historyPrice {
     text-align: center;
     border-radius: 20px;
     width: 100%;
+    cursor: pointer;
     font-size: 30px;
     margin-top: 4px;
     height: 50px;
@@ -94,6 +95,7 @@
     width: 40px;
     height: 40px;
     font-size: small;
+    cursor: pointer;
     border-radius: 100%;
     background-color: #81FFEF;
 }
@@ -101,6 +103,7 @@
 #buyShare {
     width: 40px;
     height: 40px;
+    cursor: pointer;
     font-size: small;
     border-radius: 100%;
     background-color: #F067B4;
@@ -129,6 +132,7 @@
     color: white;
     font-weight: bold;
     font-size: 50px;
+    cursor: pointer;
 }
 
 .lanMu {
@@ -140,4 +144,5 @@
 
 .lanMu li:hover {
     background-color: rgb(14, 17, 16, 0.2);
+    cursor: pointer;
 }

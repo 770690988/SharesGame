@@ -2231,9 +2231,7 @@
         const heightChanged = newHeight !== chartArea.h;
         chartArea.w = newWidth;
         chartArea.h = newHeight;
-        return layout.horizontal ?
-            { same: widthChanged, other: heightChanged } :
-            { same: heightChanged, other: widthChanged };
+        return layout.horizontal ? { same: widthChanged, other: heightChanged } : { same: heightChanged, other: widthChanged };
     }
 
     function handleMaxPadding(chartArea) {
@@ -2870,8 +2868,7 @@
         easeInCubic: t => t * t * t,
         easeOutCubic: t => (t -= 1) * t * t + 1,
         easeInOutCubic: t => ((t /= 0.5) < 1) ?
-            0.5 * t * t * t :
-            0.5 * ((t -= 2) * t * t + 2),
+            0.5 * t * t * t : 0.5 * ((t -= 2) * t * t + 2),
         easeInQuart: t => t * t * t * t,
         easeOutQuart: t => -((t -= 1) * t * t * t - 1),
         easeInOutQuart: t => ((t /= 0.5) < 1) ?
@@ -2880,21 +2877,18 @@
         easeInQuint: t => t * t * t * t * t,
         easeOutQuint: t => (t -= 1) * t * t * t * t + 1,
         easeInOutQuint: t => ((t /= 0.5) < 1) ?
-            0.5 * t * t * t * t * t :
-            0.5 * ((t -= 2) * t * t * t * t + 2),
+            0.5 * t * t * t * t * t : 0.5 * ((t -= 2) * t * t * t * t + 2),
         easeInSine: t => -Math.cos(t * HALF_PI) + 1,
         easeOutSine: t => Math.sin(t * HALF_PI),
         easeInOutSine: t => -0.5 * (Math.cos(PI * t) - 1),
         easeInExpo: t => (t === 0) ? 0 : Math.pow(2, 10 * (t - 1)),
         easeOutExpo: t => (t === 1) ? 1 : -Math.pow(2, -10 * t) + 1,
         easeInOutExpo: t => atEdge(t) ? t : t < 0.5 ?
-            0.5 * Math.pow(2, 10 * (t * 2 - 1)) :
-            0.5 * (-Math.pow(2, -10 * (t * 2 - 1)) + 2),
+            0.5 * Math.pow(2, 10 * (t * 2 - 1)) : 0.5 * (-Math.pow(2, -10 * (t * 2 - 1)) + 2),
         easeInCirc: t => (t >= 1) ? t : -(Math.sqrt(1 - t * t) - 1),
         easeOutCirc: t => Math.sqrt(1 - (t -= 1) * t),
         easeInOutCirc: t => ((t /= 0.5) < 1) ?
-            -0.5 * (Math.sqrt(1 - t * t) - 1) :
-            0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1),
+            -0.5 * (Math.sqrt(1 - t * t) - 1) : 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1),
         easeInElastic: t => atEdge(t) ? t : elasticIn(t, 0.075, 0.3),
         easeOutElastic: t => atEdge(t) ? t : elasticOut(t, 0.075, 0.3),
         easeInOutElastic(t) {
@@ -2936,8 +2930,7 @@
             return m * (t -= (2.625 / d)) * t + 0.984375;
         },
         easeInOutBounce: t => (t < 0.5) ?
-            effects.easeInBounce(t * 2) * 0.5 :
-            effects.easeOutBounce(t * 2 - 1) * 0.5 + 0.5,
+            effects.easeInBounce(t * 2) * 0.5 : effects.easeOutBounce(t * 2 - 1) * 0.5 + 0.5,
     };
 
     function _pointInLine(p1, p2, t, mode) {
@@ -2950,9 +2943,7 @@
     function _steppedInterpolation(p1, p2, t, mode) {
         return {
             x: p1.x + t * (p2.x - p1.x),
-            y: mode === 'middle' ? t < 0.5 ? p1.y : p2.y :
-                mode === 'after' ? t < 1 ? p1.y : p2.y :
-                t > 0 ? p2.y : p1.y
+            y: mode === 'middle' ? t < 0.5 ? p1.y : p2.y : mode === 'after' ? t < 1 ? p1.y : p2.y : t > 0 ? p2.y : p1.y
         };
     }
 
@@ -4122,7 +4113,8 @@
         for (let i = 0; i < ilen; ++i) {
             const item = parsed[i];
             const {
-                [iAxis]: index, [vAxis]: value } = item;
+                [iAxis]: index, [vAxis]: value
+            } = item;
             const itemStacks = item._stacks || (item._stacks = {});
             stack = itemStacks[vAxis] = getOrCreateStack(stacks, key, index);
             stack[datasetIndex] = value;
@@ -4177,8 +4169,7 @@
     }
     const isDirectUpdateMode = (mode) => mode === 'reset' || mode === 'none';
     const cloneIfNotShared = (cached, shared) => shared ? cached : Object.assign({}, cached);
-    const createStack = (canStack, meta, chart) => canStack && !meta.hidden && meta._stacked &&
-        { keys: getSortedDatasetIndices(chart, true), values: null };
+    const createStack = (canStack, meta, chart) => canStack && !meta.hidden && meta._stacked && { keys: getSortedDatasetIndices(chart, true), values: null };
     class DatasetController {
         constructor(chart, datasetIndex) {
             this.chart = chart;
@@ -9446,7 +9437,8 @@
     function inRange$1(el, pos, axis, useFinalPosition) {
         const options = el.options;
         const {
-            [axis]: value } = el.getProps([axis], useFinalPosition);
+            [axis]: value
+        } = el.getProps([axis], useFinalPosition);
         return (Math.abs(pos - value) < options.radius + options.hitRadius);
     }
     class PointElement extends Element {

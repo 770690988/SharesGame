@@ -22,8 +22,15 @@
 
     <!--标题栏-->
     <ul class="lanMu">
-        <li id="gamePart" class="col-sm-2" onclick="">游戏部分</li>
-        <li id="knowledgePart" class="col-sm-2" onclick="gotoKnowledge()">知识天地</li>
+        <li id="gamePart" class="col-sm-2" onclick="allShareShow()">
+            <a>待选股票</a>
+        </li>
+        <li id="gamePart" class="col-sm-2" onclick="yixuanShareShow()">
+            <a>已选股票买卖</a>
+        </li>
+        <li id="knowledgePart" class="col-sm-2" onclick="gotoKnowledge()">
+            <a>知识天地</a>
+        </li>
 
     </ul>
     <!--主标题(存款、天数、资产)-->
@@ -33,7 +40,7 @@
                 <div id="zichanTitle">您的存款为：</div>
             </div>
             <div class="col-sm-4">
-                <div id="moneySum">200000.00</div>
+                <div id="moneySum">200000.0</div>
             </div>
             <div class="col-sm-1">
                 <div id="zichanTitle">当前天数：</div>
@@ -45,7 +52,7 @@
                 <div id="zichanTitle">您的总资产：</div>
             </div>
             <div class="col-sm-1">
-                <div id="zichanSum">200000.00</div>
+                <div id="zichanSum">200000.0</div>
             </div>
         </div>
     </div>
@@ -80,7 +87,7 @@
                 <div id="shareTitle">股票1</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(0)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(0)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -107,7 +114,7 @@
                 <div id="shareTitle">股票2</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(1)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(1)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -134,7 +141,7 @@
                 <div id="shareTitle">股票3</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(2)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(2)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -161,7 +168,7 @@
                 <div id="shareTitle">股票4</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(3)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(3)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -188,7 +195,7 @@
                 <div id="shareTitle">股票5</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(4)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(4)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -215,7 +222,7 @@
                 <div id="shareTitle">股票6</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(5)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(5)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -242,7 +249,7 @@
                 <div id="shareTitle">股票7</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(6)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(6)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -269,7 +276,7 @@
                 <div id="shareTitle">股票8</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(7)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(7)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -296,7 +303,7 @@
                 <div id="shareTitle">股票9</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(8)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(8)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
@@ -323,7 +330,7 @@
                 <div id="shareTitle">股票10</div>
             </div>
             <div class="col-sm-2">
-                <div><button id="historyPrice" onclick="showSharesData(9)">往期数据</button></div>
+                <div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(9)">往期数据</button></div>
             </div>
             <div class="col-sm-2">
                 <div id="nowPrice" class="nowPrice">50</div>
