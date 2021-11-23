@@ -147,12 +147,12 @@ function jump(label) {
     var storage = window.sessionStorage;
     //storage.clear();
     storage.setItem('MoneySum', label);
-    window.location.href = "gameOver.html";
+    window.open("gameOver.html");
 
 }
 
 function gotoKnowledge() {
-    location.href = "knowledge.html";
+    window.open("https://www.yclyclycl.cn/2021/11/23/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more");
 }
 
 function yixuanShareShow() {
