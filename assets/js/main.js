@@ -1,18 +1,18 @@
 var shareNum = 9;
 var allData = [
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0],
-    [50.0]
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50],
+    [50]
 ]; //定义每支股票的详细信息
 var haveShareNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //定义每一支股票的拥有量 默认为0
-var isShareGet = [1, 1, 1, 1, 1, 1, 1, 0, 1, 1]; //该股票是否为已选
+var isShareGet = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //该股票是否为已选
 var dayCount = [1];
 var dayNum = 1; //定义当前的天数
 var zichanQuantity = 200000.00; //定义财产总值
@@ -20,10 +20,12 @@ var depositSum = 200000.00;
 
 //进入下一天的数据处理
 function nextDay(m) { //m表示股票的个数
+    m = shareNum;
     dayNum = dayNum + 1;
+    dayCount[dayNum - 1] = dayNum;
     for (i = 0; i <= m; i++) {
-        let nowPrice = allData[i][dayNum - 2];
-        let nextDayPrice = Math.random() * nowPrice * 0.05 - 0.025 * nowPrice + nowPrice;
+        var nowPrice = allData[i][dayNum - 2];
+        var nextDayPrice = Math.random() * nowPrice * 0.05 - 0.025 * nowPrice + nowPrice;
         if (nextDayPrice < 0) {
             nextDayPrice = nowPrice + Math.random() * nowPrice;
         }
@@ -114,34 +116,19 @@ function dataChange(m, Sprice) {
 function showSharesData(k) {
     /*$('#myChart').remove;
     $('#chartDIv').append('<canvas> </canvas>');*/
-    alert(allData[k]);
     $('#myChart').remove();
     $('#chartDIv').append('<canvas id="myChart" style="background-color: aliceblue;max-height: 80%;"></canvas>');
     let ctx = document.getElementById("myChart").getContext('2d');
-    let myChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: dayCount,
             datasets: [{
                 label: '股票' + (k + 1),
                 data: allData[k],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
             }]
         },
         options: {
