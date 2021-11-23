@@ -1,22 +1,24 @@
 var shareNum = 9;
 var allData = [
-    [50],
-    [50],
-    [50],
-    [50],
-    [50],
-    [50],
-    [50],
-    [50],
-    [50],
-    [50]
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00],
+    [50.00]
 ]; //定义每支股票的详细信息
 var haveShareNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //定义每一支股票的拥有量 默认为0
-var isShareGet = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //该股票是否为已选
-var dayCount = [1];
+var isShareGet = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //该股票是否为已选
+var dayCount = [1]; //用以显示图片的横坐标
 var dayNum = 1; //定义当前的天数
 var zichanQuantity = 200000.00; //定义财产总值
 var depositSum = 200000.00;
+var mode = 1; //表示当前页面的位置为所有股票
+allShareShow();
 
 //进入下一天的数据处理
 function nextDay(m) { //m表示股票的个数
@@ -30,7 +32,6 @@ function nextDay(m) { //m表示股票的个数
             nextDayPrice = nowPrice + Math.random() * nowPrice;
         }
         dataChange(i, parseFloat(nextDayPrice.toFixed(2)));
-        document.getElementsByClassName('nowPrice')[i].innerText = allData[i][dayNum - 1];
 
     }
     document.getElementById('dayNum').innerText = dayNum;
@@ -48,15 +49,26 @@ function nextDay(m) { //m表示股票的个数
         }
 
     }
+    showSharesPrice();
     zichanreload(shareNum);
     $('#myChart').remove();
 }
 
 //购买股票的数据处理
 function buyShare(i) {
+    var flag = 0;
+    if (mode == 2) {
+        for (var j = 0; j < i; j++) {
+            if (haveShareNum[j] > 0) {
+                flag++;
+            }
+        }
+    } else {
+        flag = i;
+    }
     var reg = /^\d+$/;
     let zichan = depositSum;
-    let youWantBuy = parseInt(document.getElementsByClassName('buyInput')[i].value);
+    let youWantBuy = parseInt(document.getElementsByClassName('buyInput')[flag].value);
     if (reg.test(youWantBuy)) {
         zichan = zichan - allData[i][dayNum - 1] * youWantBuy;
         if (zichan < 0) {
@@ -65,7 +77,7 @@ function buyShare(i) {
             depositSum = zichan;
             document.getElementById('moneySum').innerText = depositSum.toFixed(1);
             haveShareNum[i] = haveShareNum[i] + youWantBuy;
-            document.getElementsByClassName('youHave')[i].innerText = haveShareNum[i];
+            document.getElementsByClassName('youHave')[flag].innerText = haveShareNum[i];
         }
         zichanreload(shareNum);
     } else {
@@ -75,16 +87,26 @@ function buyShare(i) {
 
 //卖出股票的数据处理
 function cellShare(i) {
+    var flag = 0;
+    if (mode == 2) {
+        for (var j = 0; j < i; j++) {
+            if (haveShareNum[j] > 0) {
+                flag++;
+            }
+        }
+    } else {
+        flag = i;
+    }
     var reg = /^\d+$/;
     var getInNum = haveShareNum[i];
     //let name = 'buyInput' + i;
-    let youWantSell = parseInt(document.getElementsByClassName('cellInput')[i].value);
+    let youWantSell = parseInt(document.getElementsByClassName('cellInput')[flag].value);
     if (reg.test(youWantSell)) {
         getInNum = getInNum - youWantSell;
         if (getInNum >= 0) {
             depositSum = depositSum + allData[i][dayNum - 1] * youWantSell;
             haveShareNum[i] = haveShareNum[i] - youWantSell;
-            document.getElementsByClassName('youHave')[i].innerText = haveShareNum[i];
+            document.getElementsByClassName('youHave')[flag].innerText = haveShareNum[i];
             document.getElementById('moneySum').innerText = depositSum.toFixed(1);
         } else {
             alert("您拥有的数量不足以卖出的数量");
@@ -113,6 +135,7 @@ function dataChange(m, Sprice) {
     allData[m][dayNum - 1] = Sprice;
 }
 
+//股票折线图的绘画
 function showSharesData(k) {
     /*$('#myChart').remove;
     $('#chartDIv').append('<canvas> </canvas>');*/
@@ -143,6 +166,7 @@ function showSharesData(k) {
     });
 }
 
+//天数到达200天游戏结束的效果
 function jump(label) {
     var storage = window.sessionStorage;
     //storage.clear();
@@ -151,11 +175,14 @@ function jump(label) {
 
 }
 
+//股票小知识的跳转页面
 function gotoKnowledge() {
     window.open("https://www.yclyclycl.cn/2021/11/23/%E8%82%A1%E7%A5%A8%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more");
 }
 
+//展示已选股票的数据
 function yixuanShareShow() {
+    mode = 2;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
     var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
@@ -168,7 +195,9 @@ function yixuanShareShow() {
 
 }
 
+//展示所有的股票数据
 function allShareShow() {
+    mode = 1;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
     var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
@@ -176,10 +205,17 @@ function allShareShow() {
     for (temp = 0; temp <= shareNum; temp++) {
         addShare(temp);
     }
-
 }
 
 function addShare(i) {
     let row = '<div class="row"><div class="col-sm-2"><div id="shareTitle">股票' + (i + 1) + '</div></div><div class="col-sm-2"><div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(' + i + ')">往期数据</button></div></div><div class="col-sm-2"><div id="nowPrice" class="nowPrice">' + allData[i][dayNum - 1] + '</div></div><div class="col-sm-2"><div id="youHave" class="youHave">' + haveShareNum[i] + '</div></div><div class="col-sm-1"><input id="buyInput" name = "buyInput' + i + '" class="buyInput" placeholder="0"></div><div class="col-sm-1"><button id="buyShare" onclick="buyShare(' + i + ')">买入</button></div><div class="col-sm-1"><input id="cellInput" class="cellInput" name = "cellInput' + i + '" placeholder="0"></div><div class="col-sm-1"><button id="sellShare" onclick="cellShare(' + i + ')">卖出</button></div></div>';
     $("#sharesShow").append(row);
+}
+
+function showSharesPrice() {
+    if (mode == 1) {
+        allShareShow();
+    } else if (mode == 2) {
+        yixuanShareShow();
+    }
 }
