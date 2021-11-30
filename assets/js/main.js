@@ -136,9 +136,8 @@ function dataChange(m, Sprice) {
 }
 
 //股票折线图的绘画
+/*
 function showSharesData(k) {
-    /*$('#myChart').remove;
-    $('#chartDIv').append('<canvas> </canvas>');*/
     $('#myChart').remove();
     $('#chartDIv').append('<canvas id="myChart" style="background-color: aliceblue;max-height: 80%;"></canvas>');
     let ctx = document.getElementById("myChart").getContext('2d');
@@ -165,6 +164,142 @@ function showSharesData(k) {
         }
     });
 }
+*/
+
+//基于echarts.js的图像
+function showSharesData(k) {
+    $('#myChart').remove();
+    $('#chartDIv').append('<div id="myChart" style="background-color: aliceblue; width: 100%; height:400px;"></div>');
+    let ctx = document.getElementById("myChart");
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(ctx);
+    for (var i = 0; i <= k; i++) {
+
+    }
+    /*
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '股票价格'
+        },
+        tooltip: {},
+        legend: {
+            data: ['股价']
+        },
+        xAxis: {
+            data: dayCount
+        },
+        yAxis: {
+            name: "价格",
+            min: Math.min.apply(Math, allData[k]),
+            max: Math.max.apply(Math, allData[k])
+        },
+        series: [{
+            name: '股价',
+            type: 'line',
+            step: 'end',
+            data: allData[k]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    */
+    var m = [];
+    for (var a = 0; a < allData[k].length; a++) {
+        m[a] = allData[k][a];
+    }
+    for (var a = 1; a < m.length; a++) {
+        m[a] = m[a] - allData[k][a - 1];
+    }
+    var help = [];
+    var positive = [];
+    var negative = [];
+    for (var i = 0, sum = 0; i < m.length; ++i) {
+
+        if (m[i] >= 0) {
+            positive.push(m[i]);
+            negative.push('-');
+        } else {
+            positive.push('-');
+            negative.push(-m[i]);
+        }
+
+        if (i === 0) {
+            help.push(0);
+        } else {
+            sum += m[i - 1];
+            if (m[i] < 0) {
+                help.push(sum + m[i]);
+            } else {
+                help.push(sum);
+            }
+        }
+    }
+
+    var option = {
+        title: {
+            text: '股票价格' + (k + 1)
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            splitLine: {
+                show: false
+            },
+            data: (function() {
+                var list = [];
+                for (var i = 1; i <= dayNum; i++) {
+                    list.push('day/' + i);
+                }
+                return list;
+            })()
+        },
+        yAxis: {
+            type: 'value',
+            min: Math.min.apply(Math, allData[k]),
+            max: Math.max.apply(Math, allData[k])
+        },
+        series: [{
+            type: 'bar',
+            stack: 'all',
+            itemStyle: {
+                normal: {
+                    barBorderColor: 'rgba(0,0,0,0)',
+                    color: 'rgba(0,0,0,0)'
+                },
+                emphasis: {
+                    barBorderColor: 'rgba(0,0,0,0)',
+                    color: 'rgba(0,0,0,0)'
+                }
+            },
+            data: help
+        }, {
+            name: 'positive',
+            type: 'bar',
+            stack: 'all',
+            data: positive,
+            itemStyle: {
+                color: '#ff0000'
+            }
+        }, {
+            name: 'negative',
+            type: 'bar',
+            stack: 'all',
+            data: negative,
+            itemStyle: {
+                color: '#44cf8e'
+            }
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+}
 
 //天数到达200天游戏结束的效果
 function jump(label) {
@@ -182,6 +317,7 @@ function gotoKnowledge() {
 
 //展示已选股票的数据
 function yixuanShareShow() {
+    $('#myChart').remove();
     mode = 2;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
@@ -197,6 +333,7 @@ function yixuanShareShow() {
 
 //展示所有的股票数据
 function allShareShow() {
+    $('#myChart').remove();
     mode = 1;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
@@ -219,3 +356,18 @@ function showSharesPrice() {
         yixuanShareShow();
     }
 }
+
+/*
+function namedButton(text){
+    let button=document.createElement();
+    button.text=text;
+    button.aooendChild
+    return namedButton;
+}
+
+function rowOfATable(columns,items){
+    for item in items{
+        document.appendChild(rowOfATable(item))
+    }
+}
+*/
