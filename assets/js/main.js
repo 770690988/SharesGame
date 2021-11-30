@@ -35,7 +35,7 @@ function nextDay(m) { //m表示股票的个数
 
     }
     document.getElementById('dayNum').innerText = dayNum;
-    if (dayNum == 200) {
+    if (dayNum >= 200) {
         jump(zichanreload(shareNum));
     } else if (dayNum % 10 == 0) {
         var str = "判断题：市盈率是衡量证券投资价值和风险的指标";
