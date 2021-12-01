@@ -12,7 +12,7 @@ var allData = [
     [50.00]
 ]; //定义每支股票的详细信息
 var haveShareNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //定义每一支股票的拥有量 默认为0
-var isShareGet = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]; //该股票是否为已选
+var isShareGet = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //该股票是否为已选
 var dayCount = [1]; //用以显示图片的横坐标
 var dayNum = 1; //定义当前的天数
 var zichanQuantity = 200000.00; //定义财产总值
