@@ -12,7 +12,7 @@ var allData = [
     [50.00]
 ]; //定义每支股票的详细信息
 var haveShareNum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //定义每一支股票的拥有量 默认为0
-var isShareGet = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //该股票是否为已选
+var isShareGet = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]; //该股票是否为已选
 var dayCount = [1]; //用以显示图片的横坐标
 var dayNum = 1; //定义当前的天数
 var zichanQuantity = 200000.00; //定义财产总值
@@ -83,6 +83,24 @@ function buyShare(i) {
     } else {
         alert("请输入整数");
     }
+}
+
+function deleteShare(i) {
+    var str = "是否删除股票" + (i + 1);
+    if (confirm(str) == true) {
+        isShareGet[i] = 0;
+        alert("删除成功");
+    }
+    showSharesPrice();
+}
+
+function addZXShare(i) {
+    var str = "是否添加股票" + (i + 1);
+    if (confirm(str) == true) {
+        isShareGet[i] = 1;
+        alert("添加成功");
+    }
+    showSharesPrice();
 }
 
 //卖出股票的数据处理
@@ -321,11 +339,11 @@ function yixuanShareShow() {
     mode = 2;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
-    var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
+    var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-1"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
     $("#sharesShow").append(row);
     for (temp = 0; temp <= shareNum; temp++) {
-        if (haveShareNum[temp] > 0) {
-            addShare(temp);
+        if (isShareGet[temp] != 0) {
+            addYXShare(temp);
         }
     }
 
@@ -337,15 +355,22 @@ function allShareShow() {
     mode = 1;
     var showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
-    var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
+    var row = '<div class="row" id="rowTitle"><div class="col-sm-3"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-3"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-3"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-1"><div id="shareTableTitle1">添加股票</div></div></div>';
     $("#sharesShow").append(row);
     for (temp = 0; temp <= shareNum; temp++) {
         addShare(temp);
     }
 }
 
+//所有股票的ADD
 function addShare(i) {
-    let row = '<div class="row"><div class="col-sm-2"><div id="shareTitle">股票' + (i + 1) + '</div></div><div class="col-sm-2"><div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(' + i + ')">往期数据</button></div></div><div class="col-sm-2"><div id="nowPrice" class="nowPrice">' + allData[i][dayNum - 1] + '</div></div><div class="col-sm-2"><div id="youHave" class="youHave">' + haveShareNum[i] + '</div></div><div class="col-sm-1"><input id="buyInput" name = "buyInput' + i + '" class="buyInput" placeholder="0"></div><div class="col-sm-1"><button id="buyShare" onclick="buyShare(' + i + ')">买入</button></div><div class="col-sm-1"><input id="cellInput" class="cellInput" name = "cellInput' + i + '" placeholder="0"></div><div class="col-sm-1"><button id="sellShare" onclick="cellShare(' + i + ')">卖出</button></div></div>';
+    let row = '<div class="row"><div class="col-sm-3"><div id="shareTitle">股票' + (i + 1) + '</div></div><div class="col-sm-3"><div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(' + i + ')">往期数据</button></div></div><div class="col-sm-3"><div id="nowPrice" class="nowPrice">' + allData[i][dayNum - 1] + '</div></div><div class="col-sm-2"><div id="youHave" class="youHave">' + haveShareNum[i] + '</div></div><div class = "col-sm-1" id = "deleteDiv" onclick = "addZXShare(' + i + ')"><span class="iconfont icon-jia" id = "addFont"></span></div></div>';
+    $("#sharesShow").append(row);
+}
+
+//已选股票的ADD
+function addYXShare(i) {
+    let row = '<div class="row"><div class="col-sm-2"><div id="shareTitle">股票' + (i + 1) + '</div></div><div class="col-sm-2"><div class="historyPriceDiv"><button class="historyPrice" onclick="showSharesData(' + i + ')">往期数据</button></div></div><div class="col-sm-2"><div id="nowPrice" class="nowPrice">' + allData[i][dayNum - 1] + '</div></div><div class="col-sm-1"><div id="youHave" class="youHave">' + haveShareNum[i] + '</div></div><div class="col-sm-1"><input id="buyInput" name = "buyInput' + i + '" class="buyInput" placeholder="0"></div><div class="col-sm-1"><button id="buyShare" onclick="buyShare(' + i + ')">买入</button></div><div class="col-sm-1"><input id="cellInput" class="cellInput" name = "cellInput' + i + '" placeholder="0"></div><div class="col-sm-1"><button id="sellShare" onclick="cellShare(' + i + ')">卖出</button></div><div class = "col-sm-1" id = "deleteDiv" onclick = "deleteShare(' + i + ')"><span class="iconfont icon-cuowu" id = "deleteFont"></span></div></div>';
     $("#sharesShow").append(row);
 }
 

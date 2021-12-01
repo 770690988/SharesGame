@@ -146,3 +146,12 @@
     background-color: rgb(14, 17, 16, 0.2);
     cursor: pointer;
 }
+
+#deleteFont {
+    height: 40px;
+    margin-top: 20px;
+}
+
+#deleteDiv :hover {
+    cursor: pointer;
+}
