@@ -20,6 +20,31 @@ var depositSum = 200000.00;
 var mode = 1; //表示当前页面的位置为所有股票
 allShareShow();
 
+var sharesExercise = [];
+sharesExercise[0] = "判断题：证券经纪商不得接受客户的全权委托";
+sharesExercise[1] = "判断题：市盈率是衡量证券投资价值和风险的指标";
+sharesExercise[2] = "判断题：我说目前实行的是证券发行注册制度";
+sharesExercise[3] = "判断题：垄断竞争市场行业的企业对产品的价格没有控制权";
+sharesExercise[4] = "判断题：优先股即具有优先购买权的股票";
+sharesExercise[5] = "判断题：价格优先原则表现为：嘉禾较高的买进申报优先于价格较低的买进申报，价格较低的卖出申报优先于价格较高的卖给出申报";
+sharesExercise[6] = "判断题：利用MACD指标进行技术分析时，DIF上交叉DEA线，形成黄金交叉，同时，BAR（绿色柱状线）缩短，发出卖出信号";
+sharesExercise[7] = "判断题：证券投资的收益与风险成反比例互换关系，这种关系表现为：预期收益率 = 无风险利率 + 风险补偿";
+sharesExercise[8] = "判断题：头肩顶形态中，右肩形成时股价下跌突破颈线是一个卖出信号";
+sharesExercise[9] = "判断题：看涨期权亦称为买入期权";
+sharesExercise[10] = "判断题：收益的不确定性即为投资的风险，风险的大小与投资时间长短成反比";
+sharesExercise[11] = "判断题：有价证券即股票，是具有一定票面金额、代表财产所有权，并借以取得一定收入的一种证书";
+sharesExercise[12] = "判断题：在特殊情况下，公司可以用特设的公积金来调剂盈余，支付股息";
+sharesExercise[13] = "判断题： 采用股票股息的形式，实际上是一部分收益的资本化，增加了公司股本，相应减少了公司的当年可分配盈余";
+sharesExercise[14] = "判断题： 以不特定多数投资者为对象而广泛募集的债券是公募债券";
+sharesExercise[15] = "判断题： 开放型投资基金的发行总额不固定，投资者可向基金管理人申购或赎回基金";
+sharesExercise[16] = "判断题： 基金托管人和基金保管人之间是一种即相互协作又相互监督的关系，这种相互制衡结构的设计体现了保护投资人利益的内在要求";
+sharesExercise[17] = "判断题： 专业经纪商具有双重身份，既可以接受交易所内佣金经济上和自营商的委托进行证券代理买卖，又可以作为自营商进行证券交易";
+sharesExercise[18] = "判断题： 股份工资股票发行采取首次公开发行向耳机市场投资者配售式，投资者根据其持有上市流通证券的市值和折算后的申购限量，资源申购新股";
+sharesExercise[19] = "判断题： 记账式国债由商业银行承销并李勇营业网点分销，而凭证式国债则由证券承销商在分得包销的国债后通过证券交易所挂牌分销";
+
+exerciseAnswer = [1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0];
+
+
 //进入下一天的数据处理
 function nextDay(m) { //m表示股票的个数
     m = shareNum;
@@ -38,8 +63,9 @@ function nextDay(m) { //m表示股票的个数
     if (dayNum >= 200) {
         jump(zichanreload(shareNum));
     } else if (dayNum % 10 == 0) {
-        var str = "判断题：市盈率是衡量证券投资价值和风险的指标";
-        if (confirm(str) == true) {
+        var str = "答题时间，回答正确会获得相应奖励\n\n" + sharesExercise[dayNum / 10 - 1] + "\n\n正确选确定 错误选取消";
+        var T = confirm(str);
+        if ((T == true && exerciseAnswer[dayNum / 10 - 1] == 1) || (T == false && exerciseAnswer[dayNum / 10 - 1] == 0)) {
             alert("恭喜您回答正确，银行账户将增加5000元");
             depositSum = depositSum + 5000;
             document.getElementById('moneySum').innerText = depositSum;
