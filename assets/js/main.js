@@ -379,9 +379,9 @@ function yixuanShareShow() {
 function allShareShow() {
     $('#myChart').remove();
     mode = 1;
-    var showShareDiv = document.getElementById('sharesShow');
+    let showShareDiv = document.getElementById('sharesShow');
     showShareDiv.innerHTML = '';
-    var row = '<div class="row" id="rowTitle"><div class="col-sm-3"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-3"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-3"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-1"><div id="shareTableTitle1">添加股票</div></div></div>';
+    let row = '<div class="row" id="rowTitle"><div class="col-sm-3"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-3"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-3"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-1"><div id="shareTableTitle1">添加股票</div></div></div>';
     $("#sharesShow").append(row);
     for (temp = 0; temp <= shareNum; temp++) {
         addShare(temp);
