@@ -85,7 +85,7 @@ function buyShare(i) {
     var flag = 0;
     if (mode == 2) {
         for (var j = 0; j < i; j++) {
-            if (haveShareNum[j] > 0) {
+            if (isShareGet[j] != 0) {
                 flag++;
             }
         }
@@ -134,7 +134,7 @@ function cellShare(i) {
     var flag = 0;
     if (mode == 2) {
         for (var j = 0; j < i; j++) {
-            if (haveShareNum[j] > 0) {
+            if (isShareGet[j] != 0) {
                 flag++;
             }
         }
@@ -367,8 +367,8 @@ function yixuanShareShow() {
     showShareDiv.innerHTML = '';
     var row = '<div class="row" id="rowTitle"><div class="col-sm-2"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-2"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-2"><div id="shareTableTitle">单价</div></div><div class="col-sm-1"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-4"><div id="shareTableTitle1">买卖交易操作区域</div></div></div>';
     $("#sharesShow").append(row);
-    for (temp = 0; temp <= shareNum; temp++) {
-        if (isShareGet[temp] != 0) {
+    for (var temp = 0; temp <= shareNum; temp++) {
+        if (isShareGet[temp] == 1) {
             addYXShare(temp);
         }
     }
@@ -383,7 +383,7 @@ function allShareShow() {
     showShareDiv.innerHTML = '';
     let row = '<div class="row" id="rowTitle"><div class="col-sm-3"><div id="shareTableTitle">股票编号</div></div><div class="col-sm-3"><div id="shareTableTitle">往期数据</div></div><div class="col-sm-3"><div id="shareTableTitle">单价</div></div><div class="col-sm-2"><div id="shareTableTitle">拥有量</div></div><div class="col-sm-1"><div id="shareTableTitle1">添加股票</div></div></div>';
     $("#sharesShow").append(row);
-    for (temp = 0; temp <= shareNum; temp++) {
+    for (var temp = 0; temp <= shareNum; temp++) {
         addShare(temp);
     }
 }
