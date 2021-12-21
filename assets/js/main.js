@@ -19,6 +19,15 @@ var zichanQuantity = 200000.00; //定义财产总值
 var depositSum = 200000.00;
 var mode = 1; //表示当前页面的位置为所有股票
 allShareShow();
+var hash = location.hash;
+switch (hash) {
+    case "#yixuan":
+        yixuanShareShow();
+        break;
+    case '#allshare':
+        allShareShow();
+        break;
+}
 
 var sharesExercise = [];
 sharesExercise[0] = "判断题：证券经纪商不得接受客户的全权委托";
