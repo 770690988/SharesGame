@@ -226,9 +226,6 @@ function showSharesData(k) {
     let ctx = document.getElementById("myChart");
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(ctx);
-    for (var i = 0; i <= k; i++) {
-
-    }
     /*
     // 指定图表的配置项和数据
     var option = {
@@ -258,6 +255,12 @@ function showSharesData(k) {
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
     */
+    if (mode == 1) {
+        window.location.hash = "yixuan" + allData[k];
+    } else {
+        window.location.hash = "allshare" + allData[k];
+    }
+
     var m = [];
     for (var a = 0; a < allData[k].length; a++) {
         m[a] = allData[k][a];
