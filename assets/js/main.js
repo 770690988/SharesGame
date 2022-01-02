@@ -70,7 +70,7 @@ function nextDay(m) { //m表示股票的个数
 
     }
     document.getElementById('dayNum').innerText = dayNum;
-    if (dayNum >=5) {
+    if (dayNum >=200) {
         jump(zichanreload(shareNum));
     } else if (dayNum % 10 == 0) {
         var str = "答题时间，回答正确会获得相应奖励\n\n" + sharesExercise[dayNum / 10 - 1] + "\n\n正确选确定 错误选取消";
