@@ -35,3 +35,19 @@ if (youGain < -5000) {
 function ToIndex() {
     location.href = "../index.html";
 }
+
+function zhanshiphb(){
+    var data1;
+    $.ajax({
+        url: "../assets/jason/phb.json",//json文件位置
+        type: "GET",//请求方式为get
+        dataType: "json", //返回数据格式为json
+        success: function(data) {//请求成功完成后要执行的方法 s
+            //each循环 使用$.each方法遍历返回的数据date
+            console.log(data);
+            
+        }
+     })
+     
+     
+}
