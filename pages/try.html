@@ -1,110 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表详情页</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css" />
 </head>
 
 <body>
-    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
-    <div id="main" style="width: 1200px;height:400px;"></div>
-    <span class="iconfont icon-cuowu"></span>
-    <div id="chartDIv"></div>
-
-
-
-    <script src="../assets/js/jquery.min.js "></script>
-    <script src="../assets/js/echarts.js"></script>
-    <link rel="stylesheet" href="./assets/font/iconfont.css">
-    <script type="text/javascript">
-        $('#chartDIv').append('<div id="myChart" style="background-color: aliceblue; width: 100%; height:400px;"></div>');
-        let ctx = document.getElementById("myChart");
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(ctx);
-        var data = [900, -1345, 393, -108, -154, 135, 178, 286, -119, -361, -203];
-        var help = [];
-        var positive = [];
-        var negative = [];
-        for (var i = 0, sum = 0; i < data.length; ++i) {
-            if (data[i] >= 0) {
-                positive.push(data[i]);
-                negative.push('-');
-            } else {
-                positive.push('-');
-                negative.push(-data[i]);
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: example;
+            animation-duration: 4s;
+        }
+        
+        @keyframes example {
+            from {
+                background-color: red;
             }
-
-            if (i === 0) {
-                help.push(0);
-            } else {
-                sum += data[i - 1];
-                if (data[i] < 0) {
-                    help.push(sum + data[i]);
-                } else {
-                    help.push(sum);
-                }
+            to {
+                background-color: yellow;
             }
         }
+        
+        p {
+            font-family: "Times New Roman", Times, serif
+        }
+        
+        .em {
+            font-size: 0.5em;
+        }
+        /*30px x 0.5 = 15px*/
+    </style>
+    <h1>SharesGame</h1>
+    <p>股票投资小游戏 这是一个股票投资小游戏，刚开始你会拥有200000元，在200天之内你可以在10支股票中自行选择喜欢的股票进行买卖。 200天结束时会记录下你的最终资金。如果你愿意可以留下名字，在排行榜中会根据最终的资金进行排名。（在排行榜中） 该网页部署在： https://770690988.github.io/SharesGame/</p>
 
-        var option = {
-            title: {
-                text: 'Waterfall'
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                splitLine: {
-                    show: false
-                },
-                data: (function() {
-                    var list = [];
-                    for (var i = 1; i <= 11; i++) {
-                        list.push('Oct/' + i);
-                    }
-                    return list;
-                })()
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                type: 'bar',
-                stack: 'all',
-                itemStyle: {
-                    normal: {
-                        barBorderColor: 'rgba(0,0,0,0)',
-                        color: 'rgba(0,0,0,0)'
-                    },
-                    emphasis: {
-                        barBorderColor: 'rgba(0,0,0,0)',
-                        color: 'rgba(0,0,0,0)'
-                    }
-                },
-                data: help
-            }, {
-                name: 'positive',
-                type: 'bar',
-                stack: 'all',
-                data: positive
-            }, {
-                name: 'negative',
-                type: 'bar',
-                stack: 'all',
-                data: negative,
-                itemStyle: {
-                    color: '#f33'
-                }
-            }]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    </script>
+    <code>print("Hello World");</code>
+    <p>为了体现出有code的部分</p>
+
+    <h2>表格部分</h2>
+    <table border=8>
+        <tr>
+            <th>菜单</th>
+            <th>用途</th>
+        </tr>
+        <tr>
+            <td>待选股票</td>
+            <td>这里会显示所有的股票数据并且可以选购</td>
+        </tr>
+        <tr>
+            <td>已选股票</td>
+            <td>这里你可以对你已经选择的股票进行买卖处理</td>
+        </tr>
+    </table>
+
+    <h2>插入图片</h2>
+    <img src="../assets/pic/gupiao.png">
+    <h2>插入视频</h2>
+    <video class="art-video" preload="metadata" crossorigin="anonymous" autoplay controls src="https://vd2.bdstatic.com/mda-mg56mkqd60yg0m92/sc/cae_h264/1625546862130881045/mda-mg56mkqd60yg0m92.mp4?v_from_s=hkapp-haokan-nanjing&amp;auth_key=1641085444-0-0-8bf884111d5927ae265ec00d955e6526&amp;bcevod_channel=searchbox_feed&amp;pd=1&amp;pt=3&amp;logid=2044372893&amp;vid=5808991384152645540&amp;abtest=3000203_1&amp;klogid=2044372893"></video>
+
+    <h1>表单控件</h1>
+    <input type="text" />文本输入框<br />
+    <input type="submit" value="提交按钮" /><br />
+    <input type="reset" value="重置按钮" /><br />
+    <input type="radio" />单选按钮<br />
+    <input type="password" />密码输入框<br />
+    <input type="image" src="../assets/pic/gupiao.png" />图像<br />
+    <input type="hidden" />隐藏域<br />
+    <input type="file" />文件提交<br />
+    <input type="checkbox" />复选框<br />
+    <input type="button" value="普通按钮" /><br />
+    <select>
+<option>选择列表</option>
+<optgroup><option>下拉子菜单</option></optgroup>
+</select>
+    <textarea>文本区域</textarea>
+    <label>标签</label>
+    <fieldset>分组</fieldset>
+    <legend>描述元素，必填信息</legend>
+
+    <h2>安全字体</h2>
+    <span class="em">用em相对长度单位来设置文本的字体大小</span>
+
+    <h2>定位</h2>
+    <p>前面页面中的下一页和其他部分就分别是相对和绝对，在首页中还有z-index的页面定位模式</p>
+
+
+    <h2>扩展技术</h2>
+    <div></div>
+    <p>渐变、动画</p>
 </body>
 
 </html>
